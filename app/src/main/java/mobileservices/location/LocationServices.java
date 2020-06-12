@@ -5,10 +5,24 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-public interface LocationServices {
-    public FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Activity activity);
+import mobileservices.detector.MobileServicesDetector;
 
-    public FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Context context);
+public class LocationServices {
+    public static FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Activity activity) {
+        if (MobileServicesDetector.hasToChooseGms(activity)) {
+            return new FusedLocationProviderClientGMS(com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(activity));
+        } else {
+            return new FusedLocationProviderClientHMS(com.huawei.hms.location.LocationServices.getFusedLocationProviderClient(activity));
+        }
+    }
+
+    public FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Context context) {
+        if (MobileServicesDetector.hasToChooseGms(context)) {
+            return new FusedLocationProviderClientGMS(com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(context));
+        } else {
+            return new FusedLocationProviderClientHMS(com.huawei.hms.location.LocationServices.getFusedLocationProviderClient(context));
+        }
+    }
 
 //    Create a new instance of  for use in a non-activity Context.
 //    static GeofencingClient

@@ -1,11 +1,9 @@
-package mobileservices.location.GMS;
+package mobileservices.location;
 
 import android.content.Intent;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
-
-import mobileservices.location.LocationAvailability;
 
 public class LocationAvailabilityGMS implements LocationAvailability {
 

@@ -1,5 +1,6 @@
 package mobileservices.location;
 
+import android.app.PendingIntent;
 import android.location.Location;
 
 import androidx.annotation.RequiresPermission;
@@ -17,11 +18,14 @@ public interface FusedLocationProviderClient {
 
     Task<LocationAvailability> getLocationAvailability();
 
-    Task<Void> removeLocationUpdates(android.app.PendingIntent callbackIntent);
+    Task<Void> removeLocationUpdates(PendingIntent callbackIntent);
 
-    //    Task<Void> removeLocationUpdates(LocationCallback callback);
-//    Task<Void> requestLocationUpdates(LocationRequest request, LocationCallback callback, android.os.Looper looper);
-//    Task<Void> requestLocationUpdates(LocationRequest request, PendingIntent callbackIntent)
+    Task<Void> removeLocationUpdates(LocationCallback callback);
+
+    Task<Void> requestLocationUpdates(LocationRequest request, LocationCallback callback, android.os.Looper looper);
+
+    Task<Void> requestLocationUpdates(LocationRequest request, PendingIntent callbackIntent);
+
     @RequiresPermission(
             anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}
     )
