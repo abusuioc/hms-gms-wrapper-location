@@ -7,7 +7,6 @@ import java.util.Objects;
 /**
  * Custom LocationRequest.
  * Parcelable is not implemented.
- * There are no getters.
  */
 public class LocationRequest {
 
@@ -46,10 +45,22 @@ public class LocationRequest {
         return this;
     }
 
+    public long getExpirationTime() {
+        if (gmsLocationRequest != null) return gmsLocationRequest.getExpirationTime();
+        if (hmsLocationRequest != null) return hmsLocationRequest.getExpirationTime();
+        throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
+    }
+
     public LocationRequest setFastestInterval(long millis) {
         if (gmsLocationRequest != null) gmsLocationRequest.setFastestInterval(millis);
         if (hmsLocationRequest != null) hmsLocationRequest.setFastestInterval(millis);
         return this;
+    }
+
+    public long getFastestInterval() {
+        if (gmsLocationRequest != null) return gmsLocationRequest.getFastestInterval();
+        if (hmsLocationRequest != null) return hmsLocationRequest.getFastestInterval();
+        throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
     }
 
     public LocationRequest setInterval(long millis) {
@@ -58,16 +69,34 @@ public class LocationRequest {
         return this;
     }
 
+    public long getInterval() {
+        if (gmsLocationRequest != null) return gmsLocationRequest.getInterval();
+        if (hmsLocationRequest != null) return hmsLocationRequest.getInterval();
+        throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
+    }
+
     public LocationRequest setMaxWaitTime(long millis) {
         if (gmsLocationRequest != null) gmsLocationRequest.setMaxWaitTime(millis);
         if (hmsLocationRequest != null) hmsLocationRequest.setMaxWaitTime(millis);
         return this;
     }
 
+    public long getMaxWaitTime() {
+        if (gmsLocationRequest != null) return gmsLocationRequest.getMaxWaitTime();
+        if (hmsLocationRequest != null) return hmsLocationRequest.getMaxWaitTime();
+        throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
+    }
+
     public LocationRequest setNumUpdates(int numUpdates) {
         if (gmsLocationRequest != null) gmsLocationRequest.setNumUpdates(numUpdates);
         if (hmsLocationRequest != null) hmsLocationRequest.setNumUpdates(numUpdates);
         return this;
+    }
+
+    public int getNumUpdates() {
+        if (gmsLocationRequest != null) return gmsLocationRequest.getNumUpdates();
+        if (hmsLocationRequest != null) return hmsLocationRequest.getNumUpdates();
+        throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
     }
 
     public LocationRequest setPriority(int priority) {
@@ -106,12 +135,54 @@ public class LocationRequest {
         return this;
     }
 
+    public int getPriority() {
+        if (gmsLocationRequest != null) {
+            int gmsPriority = gmsLocationRequest.getPriority();
+            switch (gmsPriority) {
+                case com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY:
+                    return PRIORITY_HIGH_ACCURACY;
+                case com.google.android.gms.location.LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY:
+                    return PRIORITY_BALANCED_POWER_ACCURACY;
+                case com.google.android.gms.location.LocationRequest.PRIORITY_LOW_POWER:
+                    return PRIORITY_LOW_POWER;
+                case com.google.android.gms.location.LocationRequest.PRIORITY_NO_POWER:
+                    return PRIORITY_NO_POWER;
+                default:
+                    return gmsPriority;
+            }
+        }
+        if (hmsLocationRequest != null) {
+            int hmsPriority = hmsLocationRequest.getPriority();
+            switch (hmsPriority) {
+                case com.huawei.hms.location.LocationRequest.PRIORITY_HIGH_ACCURACY:
+                    return PRIORITY_HIGH_ACCURACY;
+                case com.huawei.hms.location.LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY:
+                    return PRIORITY_BALANCED_POWER_ACCURACY;
+                case com.huawei.hms.location.LocationRequest.PRIORITY_LOW_POWER:
+                    return PRIORITY_LOW_POWER;
+                case com.huawei.hms.location.LocationRequest.PRIORITY_NO_POWER:
+                    return PRIORITY_NO_POWER;
+                case com.huawei.hms.location.LocationRequest.PRIORITY_HD_ACCURACY:
+                    return PRIORITY_HD_ACCURACY;
+                default:
+                    return hmsPriority;
+            }
+        }
+        throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
+    }
+
     public LocationRequest setSmallestDisplacement(float smallestDisplacementMeters) {
         if (gmsLocationRequest != null)
             gmsLocationRequest.setSmallestDisplacement(smallestDisplacementMeters);
         if (hmsLocationRequest != null)
             hmsLocationRequest.setSmallestDisplacement(smallestDisplacementMeters);
         return this;
+    }
+
+    public float getSmallestDisplacement() {
+        if (gmsLocationRequest != null) return gmsLocationRequest.getSmallestDisplacement();
+        if (hmsLocationRequest != null) return hmsLocationRequest.getSmallestDisplacement();
+        throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
     }
 
     //HMS only
