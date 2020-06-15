@@ -1,8 +1,13 @@
 package mobileservices.location;
 
-public interface LocationCallback {
+public class LocationCallback {
 
-    void onLocationAvailability(LocationAvailability locationAvailability);
+    public LocationCallback() {
+    }
 
-    void onLocationResult(LocationResult result);
+    public void onLocationAvailability(LocationAvailability locationAvailability) {
+    }
+
+    public void onLocationResult(LocationResult result) {
+    }
 }

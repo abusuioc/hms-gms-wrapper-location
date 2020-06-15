@@ -16,7 +16,7 @@ public class LocationServices {
         }
     }
 
-    public FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Context context) {
+    public static FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Context context) {
         if (MobileServicesDetector.hasToChooseGms(context)) {
             return new FusedLocationProviderClientGMS(com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(context));
         } else {
