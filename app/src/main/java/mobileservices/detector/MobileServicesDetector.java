@@ -7,23 +7,27 @@ import com.huawei.hms.api.HuaweiApiAvailability;
 
 public class MobileServicesDetector {
 
+    /**
+     * Checks for Google Play Services availability.
+     */
     static public boolean isGmsAvailable(Context context) {
         return GoogleApiAvailability.getInstance()
                 .isGooglePlayServicesAvailable(context) == com.google.android.gms.common.ConnectionResult.SUCCESS;
     }
 
+    /**
+     * Checks for Huawei Mobile Services availability.
+     */
     static public boolean isHmsAvailable(Context context) {
         return HuaweiApiAvailability.getInstance()
                 .isHuaweiMobileServicesAvailable(context) == com.huawei.hms.api.ConnectionResult.SUCCESS;
     }
 
     /**
-     * Choose GMS first, then HMS, but if none is available then rollback to GMS as this is anyway the default behavior on GMS implementations.
-     * @param context
-     * @return go the GMS way.
+     * Detect if there is at least one mobile service available.
+     * Checks for Google Play Services and Huawei Mobile Services availability.
      */
-    static public boolean hasToChooseGms(Context context) {
-        if(isGmsAvailable(context)) return true;
-        return !isHmsAvailable(context);
+    static public boolean areMobileServicesAvailable(Context context) {
+        return isGmsAvailable(context) || isHmsAvailable(context);
     }
 }

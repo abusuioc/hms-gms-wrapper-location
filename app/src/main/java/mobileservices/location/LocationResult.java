@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Custom LocationResult.
+ * Wrapped LocationResult.
  * Parcelable is not implemented.
  */
 public class LocationResult {

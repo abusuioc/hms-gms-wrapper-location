@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.util.Objects;
 
 /**
- * Custom LocationRequest.
+ * Wrapped LocationRequest.
  * Parcelable is not implemented.
  */
 public class LocationRequest {
@@ -16,8 +16,8 @@ public class LocationRequest {
     public static final int PRIORITY_NO_POWER = 105;
     public static final int PRIORITY_HD_ACCURACY = 200;
 
-    com.google.android.gms.location.LocationRequest gmsLocationRequest;
-    com.huawei.hms.location.LocationRequest hmsLocationRequest;
+    final com.google.android.gms.location.LocationRequest gmsLocationRequest;
+    final com.huawei.hms.location.LocationRequest hmsLocationRequest;
 
     public static LocationRequest create() {
         return new LocationRequest();
@@ -191,6 +191,10 @@ public class LocationRequest {
         return this;
     }
 
+    /**
+     * Returns correct values only when Huawei Mobile Services are available on the device.
+     * @see com.huawei.hms.location.LocationAvailability#
+     */
     public LocationRequest setNeedAddress(boolean needAddress) {
         if (hmsLocationRequest != null) hmsLocationRequest.setNeedAddress(needAddress);
         return this;
