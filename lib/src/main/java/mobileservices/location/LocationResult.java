@@ -14,8 +14,8 @@ import java.util.Objects;
  */
 public class LocationResult {
 
-    com.google.android.gms.location.LocationResult gmsLocationResult;
-    com.huawei.hms.location.LocationResult hmsLocationResult;
+    final com.google.android.gms.location.LocationResult gmsLocationResult;
+    final com.huawei.hms.location.LocationResult hmsLocationResult;
 
     // Building a LocationResult from List<HWLocation> is not supported.
     public static LocationResult create(List<Location> locations) {

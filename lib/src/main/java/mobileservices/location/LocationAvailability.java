@@ -23,10 +23,6 @@ public class LocationAvailability {
         this.hmsLocationAvailability = hmsLocationAvailability;
     }
 
-    /**
-     * @see com.google.android.gms.location.LocationAvailability#extractLocationAvailability(Intent)
-     * @see com.huawei.hms.location.LocationAvailability#extractLocationAvailability(Intent)
-     */
     public static LocationAvailability extractLocationAvailability(Intent intent) {
         return new LocationAvailability(
                 com.google.android.gms.location.LocationAvailability.extractLocationAvailability(intent),
@@ -34,67 +30,40 @@ public class LocationAvailability {
         );
     }
 
-    /**
-     * @see com.google.android.gms.location.LocationAvailability#hasLocationAvailability(Intent)
-     * @see com.huawei.hms.location.LocationAvailability#hasLocationAvailability(Intent)
-     */
     public static boolean hasLocationAvailability(Intent intent) {
         return com.google.android.gms.location.LocationAvailability.hasLocationAvailability(intent) ||
                 com.huawei.hms.location.LocationAvailability.hasLocationAvailability(intent);
     }
 
-    /**
-     * @see com.google.android.gms.location.LocationAvailability#isLocationAvailable()
-     * @see com.huawei.hms.location.LocationAvailability#isLocationAvailable()
-     */
     public boolean isLocationAvailable() {
         if (gmsLocationAvailability != null) return gmsLocationAvailability.isLocationAvailable();
         if (hmsLocationAvailability != null) return hmsLocationAvailability.isLocationAvailable();
         throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationAvailability.");
     }
 
-    /**
-     * @see com.huawei.hms.location.LocationAvailability#getCellStatus()
-     * Returns correct values only when Huawei Mobile Services are available on the device.
-     */
     public int getCellStatus() {
         if (hmsLocationAvailability != null) return hmsLocationAvailability.getCellStatus();
         if (gmsLocationAvailability != null) return -1;
         throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationAvailability.");
     }
 
-    /**
-     * @see com.huawei.hms.location.LocationAvailability#getWifiStatus()
-     * Returns correct values only when Huawei Mobile Services are available on the device.
-     */
     public int getWifiStatus() {
         if (hmsLocationAvailability != null) return hmsLocationAvailability.getWifiStatus();
         if (gmsLocationAvailability != null) return -1;
         throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationAvailability.");
     }
 
-    /**
-     * @see com.huawei.hms.location.LocationAvailability#getElapsedRealtimeNs()
-     * Returns correct values only when Huawei Mobile Services are available on the device.
-     */
     public long getElapsedRealtimeNs() {
         if (hmsLocationAvailability != null) return hmsLocationAvailability.getElapsedRealtimeNs();
         if (gmsLocationAvailability != null) return -1;
         throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationAvailability.");
     }
 
-    /**
-     * @see com.huawei.hms.location.LocationAvailability#getLocationStatus()
-     * Returns correct values only when Huawei Mobile Services are available on the device.
-     */
     public int getLocationStatus() {
         if (hmsLocationAvailability != null) return hmsLocationAvailability.getLocationStatus();
         if (gmsLocationAvailability != null) return -1;
         throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationAvailability.");
     }
-
-    //From Object
-
 
     @Override
     public boolean equals(Object o) {

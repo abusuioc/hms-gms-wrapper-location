@@ -126,6 +126,8 @@ public class LocationRequest {
                     hmsLocationRequest.setPriority(com.huawei.hms.location.LocationRequest.PRIORITY_NO_POWER);
                 break;
             case PRIORITY_HD_ACCURACY:
+                if (gmsLocationRequest != null)
+                    gmsLocationRequest.setPriority(com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY);
                 if (hmsLocationRequest != null)
                     hmsLocationRequest.setPriority(com.huawei.hms.location.LocationRequest.PRIORITY_HD_ACCURACY);
                 break;
@@ -185,16 +187,11 @@ public class LocationRequest {
         throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationRequest.");
     }
 
-    //HMS only
     public LocationRequest putExtras(String key, String value) {
         if (hmsLocationRequest != null) hmsLocationRequest.putExtras(key, value);
         return this;
     }
 
-    /**
-     * Returns correct values only when Huawei Mobile Services are available on the device.
-     * @see com.huawei.hms.location.LocationAvailability#
-     */
     public LocationRequest setNeedAddress(boolean needAddress) {
         if (hmsLocationRequest != null) hmsLocationRequest.setNeedAddress(needAddress);
         return this;
@@ -210,7 +207,6 @@ public class LocationRequest {
         return this;
     }
 
-    //From Object
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
