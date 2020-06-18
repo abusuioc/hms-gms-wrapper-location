@@ -40,7 +40,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
         return new TaskGMS<>(fusedLocationProviderClient.getLocationAvailability()).continueWith(new Continuation<com.google.android.gms.location.LocationAvailability, LocationAvailability>() {
             @Override
             public LocationAvailability then(@NonNull Task<com.google.android.gms.location.LocationAvailability> task) throws Exception {
-                return new LocationAvailabilityGMS(task.getResult());
+                return new LocationAvailability(task.getResult(), null);
             }
         });
     }
@@ -57,7 +57,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
                         new com.google.android.gms.location.LocationCallback() {
                             @Override
                             public void onLocationAvailability(com.google.android.gms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailabilityGMS(locationAvailability));
+                                callback.onLocationAvailability(new LocationAvailability(locationAvailability, null));
                             }
 
                             @Override
@@ -80,7 +80,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
                         new com.google.android.gms.location.LocationCallback() {
                             @Override
                             public void onLocationAvailability(com.google.android.gms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailabilityGMS(locationAvailability));
+                                callback.onLocationAvailability(new LocationAvailability(locationAvailability, null));
                             }
 
                             @Override

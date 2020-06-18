@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 
 import mobileservices.task.Continuation;
-import mobileservices.task.GMS.TaskGMS;
 import mobileservices.task.HMS.TaskHMS;
 import mobileservices.task.Task;
 
@@ -38,7 +37,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
         return new TaskHMS<>(fusedLocationProviderClient.getLocationAvailability()).continueWith(new Continuation<com.huawei.hms.location.LocationAvailability, LocationAvailability>() {
             @Override
             public LocationAvailability then(@NonNull Task<com.huawei.hms.location.LocationAvailability> task) throws Exception {
-                return new LocationAvailabilityHMS(task.getResult());
+                return new LocationAvailability(null, task.getResult());
             }
         });
     }
@@ -58,7 +57,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
                         new com.huawei.hms.location.LocationCallback() {
                             @Override
                             public void onLocationAvailability(com.huawei.hms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailabilityHMS(locationAvailability));
+                                callback.onLocationAvailability(new LocationAvailability(null, locationAvailability));
                             }
 
                             @Override
@@ -81,7 +80,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
                         new com.huawei.hms.location.LocationCallback() {
                             @Override
                             public void onLocationAvailability(com.huawei.hms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailabilityHMS(locationAvailability));
+                                callback.onLocationAvailability(new LocationAvailability(null, locationAvailability));
                             }
 
                             @Override
