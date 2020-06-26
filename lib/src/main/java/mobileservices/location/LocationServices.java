@@ -18,8 +18,8 @@ public class LocationServices {
     }
 
     /**
-     * @see com.google.android.gms.location.LocationServices#getFusedLocationProviderClient(Activity) 
-     * @see com.huawei.hms.location.LocationServices#getFusedLocationProviderClient(Activity) 
+     * @see com.google.android.gms.location.LocationServices#getFusedLocationProviderClient(android.app.Activity)
+     * @see com.huawei.hms.location.LocationServices#getFusedLocationProviderClient(android.app.Activity)
      */
     public static FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Activity activity) {
         if (hasToChooseGms(activity)) {
@@ -30,8 +30,8 @@ public class LocationServices {
     }
 
     /**
-     * @see com.google.android.gms.location.LocationServices#getFusedLocationProviderClient(Context) 
-     * @see com.huawei.hms.location.LocationServices#getFusedLocationProviderClient(Context) 
+     * @see com.google.android.gms.location.LocationServices#getFusedLocationProviderClient(android.content.Context)
+     * @see com.huawei.hms.location.LocationServices#getFusedLocationProviderClient(android.content.Context)
      */
     public static FusedLocationProviderClient getFusedLocationProviderClient(@NonNull Context context) {
         if (hasToChooseGms(context)) {
@@ -48,10 +48,28 @@ public class LocationServices {
 //    static GeofencingClient
 //    getGeofencingClient(Context context)
 //    Create a new instance of GeofencingClient for use in a non-activity Context.
-//    static SettingsClient
-//    getSettingsClient(Context context)
-//    Create a new instance of SettingsClient for use in a non-activity Context.
-//    static SettingsClient
-//    getSettingsClient(Activity activity)
-//    Create a new instance of SettingsClient for use in an Activity.
+
+    /**
+     * @see com.google.android.gms.location.LocationServices#getSettingsClient(android.app.Activity)
+     * @see com.huawei.hms.location.LocationServices#getSettingsClient(android.app.Activity)
+     */
+    static SettingsClient getSettingsClient(Context context) {
+        if (hasToChooseGms(context)) {
+            return new SettingsClientGMS(com.google.android.gms.location.LocationServices.getSettingsClient(context));
+        } else {
+            return new SettingsClientHMS((com.huawei.hms.location.LocationServices.getSettingsClient(context)));
+        }
+    }
+
+    /**
+     * @see com.google.android.gms.location.LocationServices#getSettingsClient(android.app.Activity)
+     * @see com.huawei.hms.location.LocationServices#getSettingsClient(android.app.Activity)
+     */
+    static SettingsClient getSettingsClient(Activity activity) {
+        if (hasToChooseGms(activity)) {
+            return new SettingsClientGMS(com.google.android.gms.location.LocationServices.getSettingsClient(activity));
+        } else {
+            return new SettingsClientHMS((com.huawei.hms.location.LocationServices.getSettingsClient(activity)));
+        }
+    }
 }

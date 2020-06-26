@@ -6,7 +6,6 @@ import android.location.Location;
 import androidx.annotation.NonNull;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Wrapped LocationResult.
@@ -63,19 +62,5 @@ public class LocationResult {
         } else {
             return String.format("GMS: %s \nHMS: %s", gmsLocationResult.toString(), hmsLocationResult.toString());
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LocationResult that = (LocationResult) o;
-        return Objects.equals(gmsLocationResult, that.gmsLocationResult) &&
-                Objects.equals(hmsLocationResult, that.hmsLocationResult);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(gmsLocationResult, hmsLocationResult);
     }
 }

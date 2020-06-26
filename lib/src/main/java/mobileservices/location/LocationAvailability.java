@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -63,20 +64,6 @@ public class LocationAvailability {
         if (hmsLocationAvailability != null) return hmsLocationAvailability.getLocationStatus();
         if (gmsLocationAvailability != null) return -1;
         throw new UnsupportedOperationException("Missing underlying GMS/HMS LocationAvailability.");
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LocationAvailability that = (LocationAvailability) o;
-        return Objects.equals(gmsLocationAvailability, that.gmsLocationAvailability) &&
-                Objects.equals(hmsLocationAvailability, that.hmsLocationAvailability);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(gmsLocationAvailability, hmsLocationAvailability);
     }
 
     @NonNull
