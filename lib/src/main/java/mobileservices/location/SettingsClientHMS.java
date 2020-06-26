@@ -1,8 +1,5 @@
 package mobileservices.location;
 
-import androidx.annotation.NonNull;
-
-import mobileservices.task.Continuation;
 import mobileservices.task.HMS.TaskHMS;
 import mobileservices.task.Task;
 
@@ -16,11 +13,11 @@ public class SettingsClientHMS implements SettingsClient {
     @Override
     public Task<LocationSettingsResponse> checkLocationSettings(LocationSettingsRequest request) {
         return new TaskHMS<>(settingsClient.checkLocationSettings(request.hmsLocationSettingsRequest)).continueWith(
-                new Continuation<com.huawei.hms.location.LocationSettingsResponse, LocationSettingsResponse>() {
+                new ContinuationWithConversion<com.huawei.hms.location.LocationSettingsResponse, LocationSettingsResponse>() {
 
                     @Override
-                    public LocationSettingsResponse then(@NonNull Task<com.huawei.hms.location.LocationSettingsResponse> task) throws Exception {
-                        return new LocationSettingsResponseHMS(task.getResult());
+                    public LocationSettingsResponse convertResult(com.huawei.hms.location.LocationSettingsResponse locationSettingsResponse) {
+                        return new LocationSettingsResponseHMS(locationSettingsResponse);
                     }
                 });
     }

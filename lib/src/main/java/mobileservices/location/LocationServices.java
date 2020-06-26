@@ -53,7 +53,7 @@ public class LocationServices {
      * @see com.google.android.gms.location.LocationServices#getSettingsClient(android.app.Activity)
      * @see com.huawei.hms.location.LocationServices#getSettingsClient(android.app.Activity)
      */
-    static SettingsClient getSettingsClient(Context context) {
+    public static SettingsClient getSettingsClient(Context context) {
         if (hasToChooseGms(context)) {
             return new SettingsClientGMS(com.google.android.gms.location.LocationServices.getSettingsClient(context));
         } else {
@@ -65,7 +65,7 @@ public class LocationServices {
      * @see com.google.android.gms.location.LocationServices#getSettingsClient(android.app.Activity)
      * @see com.huawei.hms.location.LocationServices#getSettingsClient(android.app.Activity)
      */
-    static SettingsClient getSettingsClient(Activity activity) {
+    public static SettingsClient getSettingsClient(Activity activity) {
         if (hasToChooseGms(activity)) {
             return new SettingsClientGMS(com.google.android.gms.location.LocationServices.getSettingsClient(activity));
         } else {

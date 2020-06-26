@@ -21,7 +21,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
 
     @Override
     public Task<Void> flushLocations() {
-        return new TaskGMS<>(fusedLocationProviderClient.flushLocations());
+        return new TaskGMS<>(fusedLocationProviderClient.flushLocations()).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -29,7 +29,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Location> getLastLocation() {
-        return new TaskGMS<>(fusedLocationProviderClient.getLastLocation());
+        return new TaskGMS<>(fusedLocationProviderClient.getLastLocation()).continueWith(new ContinuationIdentity<Location>());
     }
 
     @RequiresPermission(
@@ -42,12 +42,13 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
             public LocationAvailability then(@NonNull Task<com.google.android.gms.location.LocationAvailability> task) throws Exception {
                 return new LocationAvailability(task.getResult(), null);
             }
-        });
+        }).continueWith(new ContinuationIdentity<LocationAvailability>());
     }
 
     @Override
     public Task<Void> removeLocationUpdates(PendingIntent callbackIntent) {
-        return new TaskGMS<>(fusedLocationProviderClient.removeLocationUpdates(callbackIntent));
+        return new TaskGMS<>(fusedLocationProviderClient.removeLocationUpdates(callbackIntent))
+                .continueWith(new ContinuationIdentity<Void>());
     }
 
     @Override
@@ -66,7 +67,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
                             }
                         }
                 )
-        );
+        ).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -90,7 +91,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
                         },
                         looper
                 )
-        );
+        ).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -103,7 +104,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
                         request.gmsLocationRequest,
                         callbackIntent
                 )
-        );
+        ).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -111,7 +112,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Void> setMockLocation(Location mockLocation) {
-        return new TaskGMS<>(fusedLocationProviderClient.setMockLocation(mockLocation));
+        return new TaskGMS<>(fusedLocationProviderClient.setMockLocation(mockLocation)).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -119,6 +120,6 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Void> setMockMode(boolean isMockMode) {
-        return new TaskGMS<>(fusedLocationProviderClient.setMockMode(isMockMode));
+        return new TaskGMS<>(fusedLocationProviderClient.setMockMode(isMockMode)).continueWith(new ContinuationIdentity<Void>());
     }
 }

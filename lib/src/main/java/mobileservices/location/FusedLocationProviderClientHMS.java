@@ -21,7 +21,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
 
     @Override
     public Task<Void> flushLocations() {
-        return new TaskHMS<>(fusedLocationProviderClient.flushLocations());
+        return new TaskHMS<>(fusedLocationProviderClient.flushLocations()).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -29,7 +29,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Location> getLastLocation() {
-        return new TaskHMS<>(fusedLocationProviderClient.getLastLocation());
+        return new TaskHMS<>(fusedLocationProviderClient.getLastLocation()).continueWith(new ContinuationIdentity<Location>());
     }
 
     @Override
@@ -39,12 +39,12 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
             public LocationAvailability then(@NonNull Task<com.huawei.hms.location.LocationAvailability> task) throws Exception {
                 return new LocationAvailability(null, task.getResult());
             }
-        });
+        }).continueWith(new ContinuationIdentity<LocationAvailability>());
     }
 
     @Override
     public Task<Void> removeLocationUpdates(PendingIntent callbackIntent) {
-        return new TaskHMS<>(fusedLocationProviderClient.removeLocationUpdates(callbackIntent));
+        return new TaskHMS<>(fusedLocationProviderClient.removeLocationUpdates(callbackIntent)).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -66,7 +66,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
                             }
                         }
                 )
-        );
+        ).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -90,12 +90,17 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
                         },
                         looper
                 )
-        );
+        ).continueWith(new ContinuationIdentity<Void>());
     }
 
     @Override
     public Task<Void> requestLocationUpdates(LocationRequest request, PendingIntent callbackIntent) {
-        return null;
+        return new TaskHMS<>(
+                fusedLocationProviderClient.requestLocationUpdates(
+                        request.hmsLocationRequest,
+                        callbackIntent
+                )
+        ).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -103,7 +108,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Void> setMockLocation(Location mockLocation) {
-        return new TaskHMS<>(fusedLocationProviderClient.setMockLocation(mockLocation));
+        return new TaskHMS<>(fusedLocationProviderClient.setMockLocation(mockLocation)).continueWith(new ContinuationIdentity<Void>());
     }
 
     @RequiresPermission(
@@ -111,6 +116,6 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Void> setMockMode(boolean isMockMode) {
-        return new TaskHMS<>(fusedLocationProviderClient.setMockMode(isMockMode));
+        return new TaskHMS<>(fusedLocationProviderClient.setMockMode(isMockMode)).continueWith(new ContinuationIdentity<Void>());
     }
 }
