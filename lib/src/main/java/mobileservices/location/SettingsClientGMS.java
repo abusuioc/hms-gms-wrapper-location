@@ -1,7 +1,7 @@
 package mobileservices.location;
 
-import mobileservices.task.GMS.TaskGMS;
-import mobileservices.task.Task;
+import mobileservices.tasks.GMS.TaskGMS;
+import mobileservices.tasks.Task;
 
 public class SettingsClientGMS implements SettingsClient {
     private final com.google.android.gms.location.SettingsClient settingsClient;

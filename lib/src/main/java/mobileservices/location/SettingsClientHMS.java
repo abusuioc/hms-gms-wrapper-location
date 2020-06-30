@@ -1,7 +1,7 @@
 package mobileservices.location;
 
-import mobileservices.task.HMS.TaskHMS;
-import mobileservices.task.Task;
+import mobileservices.tasks.HMS.TaskHMS;
+import mobileservices.tasks.Task;
 
 public class SettingsClientHMS implements SettingsClient {
     private final com.huawei.hms.location.SettingsClient settingsClient;

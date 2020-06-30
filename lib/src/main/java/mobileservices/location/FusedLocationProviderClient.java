@@ -5,7 +5,7 @@ import android.location.Location;
 
 import androidx.annotation.RequiresPermission;
 
-import mobileservices.task.Task;
+import mobileservices.tasks.Task;
 
 public interface FusedLocationProviderClient {
 

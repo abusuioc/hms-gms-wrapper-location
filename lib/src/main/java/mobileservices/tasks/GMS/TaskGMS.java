@@ -1,4 +1,4 @@
-package mobileservices.task.GMS;
+package mobileservices.tasks.GMS;
 
 
 import android.app.Activity;
@@ -8,13 +8,13 @@ import androidx.annotation.Nullable;
 
 import java.util.concurrent.Executor;
 
-import mobileservices.task.Continuation;
-import mobileservices.task.OnCanceledListener;
-import mobileservices.task.OnCompleteListener;
-import mobileservices.task.OnFailureListener;
-import mobileservices.task.OnSuccessListener;
-import mobileservices.task.SuccessContinuation;
-import mobileservices.task.Task;
+import mobileservices.tasks.Continuation;
+import mobileservices.tasks.OnCanceledListener;
+import mobileservices.tasks.OnCompleteListener;
+import mobileservices.tasks.OnFailureListener;
+import mobileservices.tasks.OnSuccessListener;
+import mobileservices.tasks.SuccessContinuation;
+import mobileservices.tasks.Task;
 
 public class TaskGMS<TResult> implements Task<TResult> {
     private final com.google.android.gms.tasks.Task<TResult> task;
@@ -191,7 +191,7 @@ public class TaskGMS<TResult> implements Task<TResult> {
     }
 
     @Override
-    public <TContinuationResult> mobileservices.task.Task<TContinuationResult> continueWith(final Continuation<TResult, TContinuationResult> continuation) {
+    public <TContinuationResult> mobileservices.tasks.Task<TContinuationResult> continueWith(final Continuation<TResult, TContinuationResult> continuation) {
         return new TaskGMS<>(task.continueWith(new com.google.android.gms.tasks.Continuation<TResult, TContinuationResult>() {
             @Override
             public TContinuationResult then(@NonNull com.google.android.gms.tasks.Task<TResult> task) throws Exception {
@@ -201,7 +201,7 @@ public class TaskGMS<TResult> implements Task<TResult> {
     }
 
     @Override
-    public <TContinuationResult> mobileservices.task.Task<TContinuationResult> continueWith(Executor executor, final Continuation<TResult, TContinuationResult> continuation) {
+    public <TContinuationResult> mobileservices.tasks.Task<TContinuationResult> continueWith(Executor executor, final Continuation<TResult, TContinuationResult> continuation) {
         return new TaskGMS<>(task.continueWith(executor, new com.google.android.gms.tasks.Continuation<TResult, TContinuationResult>() {
             @Override
             public TContinuationResult then(@NonNull com.google.android.gms.tasks.Task<TResult> task) throws Exception {
@@ -211,7 +211,7 @@ public class TaskGMS<TResult> implements Task<TResult> {
     }
 
     @Override
-    public <TContinuationResult> mobileservices.task.Task<TContinuationResult> continueWithTask(final Continuation<TResult, Task<TContinuationResult>> continuation) {
+    public <TContinuationResult> mobileservices.tasks.Task<TContinuationResult> continueWithTask(final Continuation<TResult, Task<TContinuationResult>> continuation) {
         return new TaskGMS<>(task.continueWithTask(new com.google.android.gms.tasks.Continuation<TResult, com.google.android.gms.tasks.Task<TContinuationResult>>() {
             @Override
             public com.google.android.gms.tasks.Task<TContinuationResult> then(@NonNull com.google.android.gms.tasks.Task<TResult> task) throws Exception {
@@ -221,7 +221,7 @@ public class TaskGMS<TResult> implements Task<TResult> {
     }
 
     @Override
-    public <TContinuationResult> mobileservices.task.Task<TContinuationResult> continueWithTask(Executor executor, final Continuation<TResult, Task<TContinuationResult>> continuation) {
+    public <TContinuationResult> mobileservices.tasks.Task<TContinuationResult> continueWithTask(Executor executor, final Continuation<TResult, Task<TContinuationResult>> continuation) {
         return new TaskGMS<>(task.continueWithTask(executor, new com.google.android.gms.tasks.Continuation<TResult, com.google.android.gms.tasks.Task<TContinuationResult>>() {
             @Override
             public com.google.android.gms.tasks.Task<TContinuationResult> then(@NonNull com.google.android.gms.tasks.Task<TResult> task) throws Exception {

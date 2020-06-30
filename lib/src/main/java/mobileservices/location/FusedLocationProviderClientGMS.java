@@ -7,9 +7,9 @@ import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 
-import mobileservices.task.Continuation;
-import mobileservices.task.GMS.TaskGMS;
-import mobileservices.task.Task;
+import mobileservices.tasks.Continuation;
+import mobileservices.tasks.GMS.TaskGMS;
+import mobileservices.tasks.Task;
 
 public class FusedLocationProviderClientGMS implements FusedLocationProviderClient {
 

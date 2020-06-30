@@ -17,7 +17,7 @@ public class LocationSettingsRequest {
     }
 
 
-    static class Builder {
+    public static class Builder {
         final private com.google.android.gms.location.LocationSettingsRequest.Builder gmsLocationSettingsRequestBuilder;
         final private com.huawei.hms.location.LocationSettingsRequest.Builder hmsLocationSettingsRequestBuilder;
 

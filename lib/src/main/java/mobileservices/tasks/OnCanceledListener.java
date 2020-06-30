@@ -1,4 +1,4 @@
-package mobileservices.task;
+package mobileservices.tasks;
 
 public interface OnCanceledListener {
     void onCanceled();

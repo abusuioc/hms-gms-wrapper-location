@@ -1,4 +1,4 @@
-package mobileservices.task;
+package mobileservices.tasks;
 
 import androidx.annotation.NonNull;
 

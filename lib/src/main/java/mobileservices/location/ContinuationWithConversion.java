@@ -4,8 +4,8 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 
 import mobileservices.common.api.ExceptionConverter;
-import mobileservices.task.Continuation;
-import mobileservices.task.Task;
+import mobileservices.tasks.Continuation;
+import mobileservices.tasks.Task;
 
 /**
  * Special @link {@link Continuation} that converts the result in case of success and the Exception in case of failure.

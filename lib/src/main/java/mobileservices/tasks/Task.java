@@ -1,4 +1,4 @@
-package mobileservices.task;
+package mobileservices.tasks;
 
 import android.app.Activity;
 
