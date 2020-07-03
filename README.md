@@ -74,9 +74,16 @@ Now, depending on the current situation of your codebase, there are 2 scenarios:
 
 ##### 1. You already have a working implementation based on Google's fused location provider
 
-STEP1: do a mass rename from package `com.google.android.gms.location` to package `mobileservices.location`.
+STEP1: do a mass rename, essentially from package:
 
-You can check if it was a successful rename by having no compilation errors at this point.
+- `com.google.android.gms.location` to package:  `mobileservices.location`. 
+
+Depending on your code and imports, you might need to touch other packages as well:
+
+- `com.google.android.gms.tasks` -> `mobileservices.tasks`
+- `com.google.android.gms.common` -> `mobileservices.common`
+
+You can check that it was a successful rename by having no compilation errors at this point.
 
 STEP2: pull the plug for the old Google Play Services Location provider direct dependency by removing the `implementation 'com.google.android.gms:play-services-location: ... '` entry from your app `build.gradle` .
 

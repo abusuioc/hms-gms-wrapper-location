@@ -54,19 +54,7 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
     @Override
     public Task<Void> removeLocationUpdates(final LocationCallback callback) {
         return new TaskGMS<>(
-                fusedLocationProviderClient.removeLocationUpdates(
-                        new com.google.android.gms.location.LocationCallback() {
-                            @Override
-                            public void onLocationAvailability(com.google.android.gms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailability(locationAvailability, null));
-                            }
-
-                            @Override
-                            public void onLocationResult(com.google.android.gms.location.LocationResult locationResult) {
-                                callback.onLocationResult(new LocationResult(locationResult, null));
-                            }
-                        }
-                )
+                fusedLocationProviderClient.removeLocationUpdates(callback.gmsLocationCallback)
         ).continueWith(new ContinuationIdentity<Void>());
     }
 
@@ -75,20 +63,24 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Void> requestLocationUpdates(LocationRequest request, final LocationCallback callback, Looper looper) {
+        com.google.android.gms.location.LocationCallback gmsLocationCallback = new com.google.android.gms.location.LocationCallback() {
+            @Override
+            public void onLocationAvailability(com.google.android.gms.location.LocationAvailability locationAvailability) {
+                callback.onLocationAvailability(new LocationAvailability(locationAvailability, null));
+            }
+
+            @Override
+            public void onLocationResult(com.google.android.gms.location.LocationResult locationResult) {
+                callback.onLocationResult(new LocationResult(locationResult, null));
+            }
+        };
+
+        callback.gmsLocationCallback = gmsLocationCallback;
+
         return new TaskGMS<>(
                 fusedLocationProviderClient.requestLocationUpdates(
                         request.gmsLocationRequest,
-                        new com.google.android.gms.location.LocationCallback() {
-                            @Override
-                            public void onLocationAvailability(com.google.android.gms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailability(locationAvailability, null));
-                            }
-
-                            @Override
-                            public void onLocationResult(com.google.android.gms.location.LocationResult locationResult) {
-                                callback.onLocationResult(new LocationResult(locationResult, null));
-                            }
-                        },
+                        gmsLocationCallback,
                         looper
                 )
         ).continueWith(new ContinuationIdentity<Void>());

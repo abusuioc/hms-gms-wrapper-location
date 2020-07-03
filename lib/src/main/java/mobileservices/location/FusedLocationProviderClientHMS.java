@@ -53,19 +53,7 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
     @Override
     public Task<Void> removeLocationUpdates(final LocationCallback callback) {
         return new TaskHMS<>(
-                fusedLocationProviderClient.removeLocationUpdates(
-                        new com.huawei.hms.location.LocationCallback() {
-                            @Override
-                            public void onLocationAvailability(com.huawei.hms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailability(null, locationAvailability));
-                            }
-
-                            @Override
-                            public void onLocationResult(com.huawei.hms.location.LocationResult locationResult) {
-                                callback.onLocationResult(new LocationResult(null, locationResult));
-                            }
-                        }
-                )
+                fusedLocationProviderClient.removeLocationUpdates(callback.hmsLocationCallback)
         ).continueWith(new ContinuationIdentity<Void>());
     }
 
@@ -74,20 +62,24 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Void> requestLocationUpdates(LocationRequest request, final LocationCallback callback, Looper looper) {
+        com.huawei.hms.location.LocationCallback hmsLocationCallback = new com.huawei.hms.location.LocationCallback() {
+            @Override
+            public void onLocationAvailability(com.huawei.hms.location.LocationAvailability locationAvailability) {
+                callback.onLocationAvailability(new LocationAvailability(null, locationAvailability));
+            }
+
+            @Override
+            public void onLocationResult(com.huawei.hms.location.LocationResult locationResult) {
+                callback.onLocationResult(new LocationResult(null, locationResult));
+            }
+        };
+
+        callback.hmsLocationCallback = hmsLocationCallback;
+
         return new TaskHMS<>(
                 fusedLocationProviderClient.requestLocationUpdates(
                         request.hmsLocationRequest,
-                        new com.huawei.hms.location.LocationCallback() {
-                            @Override
-                            public void onLocationAvailability(com.huawei.hms.location.LocationAvailability locationAvailability) {
-                                callback.onLocationAvailability(new LocationAvailability(null, locationAvailability));
-                            }
-
-                            @Override
-                            public void onLocationResult(com.huawei.hms.location.LocationResult locationResult) {
-                                callback.onLocationResult(new LocationResult(null, locationResult));
-                            }
-                        },
+                        hmsLocationCallback,
                         looper
                 )
         ).continueWith(new ContinuationIdentity<Void>());
