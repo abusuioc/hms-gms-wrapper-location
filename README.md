@@ -62,7 +62,7 @@ Then add the actual library dependency in your app `build.gradle`:
 
 ```gradle
 dependencies {
-	implementation 'com.github.abusuioc:hms-gms-wrapper-location:1.0-alpha'
+	implementation 'com.github.abusuioc:hms-gms-wrapper-location:1.0-beta-1'
 }
 ```
 
@@ -103,6 +103,6 @@ STEP2: build, run and you're done! ™
 
 ## Project status
 
-The current alpha covers the functionality offered by `FusedLocationProviderClient`. This alone should cover 80% of what a regular app needs in regards to location providing. More is on the way!
+The current beta covers the entire set of features except activity recognition and geofencing.
 
 Please reach out to me or create an issue to start a conversation. Thanks!
