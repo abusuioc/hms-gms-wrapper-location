@@ -53,6 +53,11 @@ public class FusedLocationProviderClientGMS implements FusedLocationProviderClie
 
     @Override
     public Task<Void> removeLocationUpdates(final LocationCallback callback) {
+        if (callback == null || callback.gmsLocationCallback == null) {
+            com.google.android.gms.tasks.TaskCompletionSource<Void> taskCompletionSource = new com.google.android.gms.tasks.TaskCompletionSource<>();
+            taskCompletionSource.setResult(null);
+            return new TaskGMS<>(taskCompletionSource.getTask());
+        }
         return new TaskGMS<>(
                 fusedLocationProviderClient.removeLocationUpdates(callback.gmsLocationCallback)
         ).continueWith(new ContinuationIdentity<Void>());

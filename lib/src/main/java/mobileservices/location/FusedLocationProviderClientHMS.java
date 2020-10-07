@@ -7,6 +7,8 @@ import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 
+import com.huawei.hmf.tasks.TaskCompletionSource;
+
 import mobileservices.tasks.Continuation;
 import mobileservices.tasks.HMS.TaskHMS;
 import mobileservices.tasks.Task;
@@ -52,9 +54,15 @@ public class FusedLocationProviderClientHMS implements FusedLocationProviderClie
     )
     @Override
     public Task<Void> removeLocationUpdates(final LocationCallback callback) {
-        return new TaskHMS<>(
-                fusedLocationProviderClient.removeLocationUpdates(callback.hmsLocationCallback)
-        ).continueWith(new ContinuationIdentity<Void>());
+        if (callback == null || callback.hmsLocationCallback == null) {
+            TaskCompletionSource<Void> taskCompletionSource = new com.huawei.hmf.tasks.TaskCompletionSource<>();
+            taskCompletionSource.setResult(null);
+            return new TaskHMS<>(taskCompletionSource.getTask());
+        } else {
+            return new TaskHMS<>(
+                    fusedLocationProviderClient.removeLocationUpdates(callback.hmsLocationCallback)
+            ).continueWith(new ContinuationIdentity<Void>());
+        }
     }
 
     @RequiresPermission(
