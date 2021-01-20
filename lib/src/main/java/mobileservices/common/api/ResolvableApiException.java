@@ -13,19 +13,19 @@ public class ResolvableApiException extends ApiException {
     public void startResolutionForResult(Activity activity, int requestCode) throws IntentSender.SendIntentException {
         if (gmsApiException != null) {
             ((com.google.android.gms.common.api.ResolvableApiException) gmsApiException).startResolutionForResult(activity, requestCode);
-        }
-        if (hmsApiException != null) {
+        } else if (hmsApiException != null) {
             ((com.huawei.hms.common.ResolvableApiException) hmsApiException).startResolutionForResult(activity, requestCode);
+        } else {
+            throw new UnsupportedOperationException("Missing underlying GMS/HMS ResolvableApiException.");
         }
-        throw new UnsupportedOperationException("Missing underlying GMS/HMS ResolvableApiException.");
     }
 
     public PendingIntent getResolution() {
         if (gmsApiException != null) {
-            ((com.google.android.gms.common.api.ResolvableApiException) gmsApiException).getResolution();
+            return ((com.google.android.gms.common.api.ResolvableApiException) gmsApiException).getResolution();
         }
         if (hmsApiException != null) {
-            ((com.huawei.hms.common.ResolvableApiException) hmsApiException).getResolution();
+            return ((com.huawei.hms.common.ResolvableApiException) hmsApiException).getResolution();
         }
         throw new UnsupportedOperationException("Missing underlying GMS/HMS ResolvableApiException.");
     }
