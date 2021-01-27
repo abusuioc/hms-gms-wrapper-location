@@ -2,7 +2,7 @@
 
 [![](https://jitpack.io/v/abusuioc/hms-gms-wrapper-location.svg?style=flat-square)](https://jitpack.io/#abusuioc/hms-gms-wrapper-location/)
 
-Originally, the first fused location provider available on Android was provided by Google Play Services.
+In the beginning, the only fused location provider for Android devices was made available by Google Play Services.
 
 FFW to late 2019 and we have a new player:  [Huawei](https://www.huawei.com/).
 
