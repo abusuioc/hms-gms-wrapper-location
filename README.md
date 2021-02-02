@@ -62,7 +62,7 @@ Then add the actual library dependency in your app `build.gradle`:
 
 ```gradle
 dependencies {
-	implementation 'com.github.abusuioc:hms-gms-wrapper-location:1.0-beta-4'
+	implementation 'com.github.abusuioc:hms-gms-wrapper-location:1.0beta-5'
 }
 ```
 
@@ -104,5 +104,7 @@ STEP2: build, run and you're done! ™
 ## Project status
 
 The current beta covers the entire set of features except activity recognition and geofencing.
+
+Please check out branch **feat/no-androidX** for a non AndroidX version.
 
 Please reach out to me or create an issue to start a conversation. Thanks!
