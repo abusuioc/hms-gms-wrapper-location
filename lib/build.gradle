@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.0-beta-3"
+        versionCode 5
+        versionName "1.0-beta-4-noAndroidX"
         consumerProguardFiles 'proguard.txt'
     }
 
@@ -27,7 +27,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.huawei.hms:location:4.0.3.301'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
     testImplementation 'junit:junit:4.12'
 }

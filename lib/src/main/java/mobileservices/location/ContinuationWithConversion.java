@@ -1,7 +1,7 @@
 package mobileservices.location;
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
+import android.support.annotation.CallSuper;
+import android.support.annotation.NonNull;
 
 import mobileservices.common.api.ExceptionConverter;
 import mobileservices.tasks.Continuation;

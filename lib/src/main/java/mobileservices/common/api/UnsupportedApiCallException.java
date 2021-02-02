@@ -1,7 +1,7 @@
 package mobileservices.common.api;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 public class UnsupportedApiCallException extends UnsupportedOperationException {
     protected final com.google.android.gms.common.api.UnsupportedApiCallException gmsUnsupportedApiCallException;

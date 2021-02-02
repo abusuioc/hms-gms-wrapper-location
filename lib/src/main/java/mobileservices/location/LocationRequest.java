@@ -1,6 +1,6 @@
 package mobileservices.location;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * Wrapped LocationRequest.

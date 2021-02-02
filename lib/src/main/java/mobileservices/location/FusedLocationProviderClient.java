@@ -3,7 +3,7 @@ package mobileservices.location;
 import android.app.PendingIntent;
 import android.location.Location;
 
-import androidx.annotation.RequiresPermission;
+import android.support.annotation.RequiresPermission;
 
 import mobileservices.tasks.Task;
 
