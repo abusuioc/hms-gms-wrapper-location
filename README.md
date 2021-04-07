@@ -62,7 +62,7 @@ Then add the actual library dependency in your app `build.gradle`:
 
 ```gradle
 dependencies {
-	implementation 'com.github.abusuioc:hms-gms-wrapper-location:1.0beta-5'
+	implementation 'com.github.abusuioc:hms-gms-wrapper-location:1.0-beta-5'
 }
 ```
 
