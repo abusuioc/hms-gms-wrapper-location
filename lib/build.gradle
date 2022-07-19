@@ -1,15 +1,13 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-
-group='com.github.abusuioc'
+plugins {
+    id 'com.android.library'
+}
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 32
 
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 29
+        targetSdkVersion 32
         versionCode 6
         versionName "1.0-beta-5"
         consumerProguardFiles 'proguard.txt'
@@ -26,8 +24,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.huawei.hms:location:4.0.3.301'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.huawei.hms:location:6.4.0.300'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
 }
